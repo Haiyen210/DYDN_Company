@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DYDN_Company.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace DYDN_Company.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AddCors")]
     public class CategoryProductController : ControllerBase
     {
         private readonly AppDBContext _context;
