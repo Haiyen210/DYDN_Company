@@ -12,7 +12,7 @@ namespace DYDN_Company.Models
     public class WareHouse
     {
         [Key]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "This field can't blank")]
         public string Code { get; set; }
         [MaxLength(30, ErrorMessage = "Max of length is 30 characters")]
@@ -20,12 +20,10 @@ namespace DYDN_Company.Models
         public string Name { get; set; }
         public int Quantity { get; set; }
         [DefaultValue(true)]
-        public byte Status { get; set; }
-        [ForeignKey("Factory")]
-        public virtual Factory Factorys { get; set; }
+        public bool Status { get; set; }
+        // Foreign Key - tblFactory
+        public Factory Factory { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        
-        public ICollection<Product> Products { get; set; }
     }
 }

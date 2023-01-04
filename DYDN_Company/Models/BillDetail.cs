@@ -11,10 +11,13 @@ namespace DYDN_Company.Models
     public class BillDetail
     {
         [Key]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         // Foreign Key - tblBill
-        public int BillId { get; set; }
+        public int BillID { get; set; }
         public Bill Bill { get; set; }
+        // Foreign Key - tblOrderDetail
+        public int OrderDetailID { get; set; }
+        public OrderDetail OrderDetail { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
     }

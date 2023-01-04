@@ -12,7 +12,7 @@ namespace DYDN_Company.Models
     public class Banner
     {
         [Key]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "This field can't blank")]
         public string Code { get; set; }
         [MaxLength(30, ErrorMessage = "Max of length is 30 characters")]

@@ -12,16 +12,14 @@ namespace DYDN_Company.Models
     public class Bill
     {
         [Key]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         // Foreign Key - tblOrder
-        public int OrderId { get; set; }
+        public int OrderID { get; set; }
         public Order Order { get; set; }
         public float TotalPrice { get; set; }
-        public int Tax { get; set; }
         [DefaultValue(false)]
-        public byte Status { get; set; }
+        public bool Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public ICollection<BillDetail> BillDetails { get; set; }
     }
 }
