@@ -34,14 +34,21 @@ namespace DYDN_Company.Models
         [DefaultValue(true)]
         public bool Status { get; set; }
         [Required(ErrorMessage = "This field can't empty")]
-        [MinLength(8,ErrorMessage = "Password must be at least 2 characters")]
+        [MinLength(8,ErrorMessage = "Password must be at least 8 characters")]
         public string Password { get; set; }
         [DefaultValue("Customer")]
         public byte Role { get; set; }
         public int DepartmentId { get; set; }
-        public virtual Department Departments { get; set; }
+        public Department Departments { get; set; }
+ 
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
 
+    }
+
+   public class AccountAdminDisplay : AccountAdmin
+    {
+
+        public string DepartmentName { get; set; }
     }
 }

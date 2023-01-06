@@ -114,5 +114,22 @@ namespace DYDN_Company.Controllers
         {
             return _context.Banners.Any(e => e.Id == id);
         }
+        [HttpGet]
+        [Route("get-data-chart")]
+        public IActionResult GetDataToChart()
+        {
+            List<int> datas = new List<int>();
+            datas.Add(_context.Products.Count());
+            datas.Add(_context.CategoryProducts.Count());
+            datas.Add(_context.Banners.Count());
+            datas.Add(_context.AccountAdmins.Count());
+            datas.Add(_context.AccountUsers.Count());
+            datas.Add(_context.Departments.Count());
+            datas.Add(_context.Factories.Count());
+            datas.Add(_context.WareHouses.Count());
+            datas.Add(_context.Orders.Count());
+            datas.Add(_context.Bills.Count());
+            return Ok(datas);
+        }
     }
 }

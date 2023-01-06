@@ -19,9 +19,61 @@ namespace DYDN_Company.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DYDN_Company.Models.Account", b =>
+            modelBuilder.Entity("DYDN_Company.Models.AccountAdmin", b =>
                 {
-                    b.Property<int?>("ID")
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("Birthday");
+
+                    b.Property<string>("Code")
+                        .IsRequired();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("DepartmentId");
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<bool?>("Gender");
+
+                    b.Property<DateTime>("ModifiedDate");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.Property<string>("Phone")
+                        .IsRequired();
+
+                    b.Property<byte>("Role");
+
+                    b.Property<bool>("Status");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("tblAccountAdmin");
+                });
+
+            modelBuilder.Entity("DYDN_Company.Models.AccountUser", b =>
+                {
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -52,11 +104,11 @@ namespace DYDN_Company.Migrations
                     b.Property<string>("Phone")
                         .IsRequired();
 
-                    b.Property<string>("Role");
+                    b.Property<byte>("Role");
 
                     b.Property<bool>("Status");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("Code")
                         .IsUnique();
@@ -64,12 +116,12 @@ namespace DYDN_Company.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("tblAccount");
+                    b.ToTable("tblAccountUser");
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.Banner", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -89,14 +141,14 @@ namespace DYDN_Company.Migrations
 
                     b.Property<bool>("Status");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("tblBanner");
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.Bill", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -104,45 +156,43 @@ namespace DYDN_Company.Migrations
 
                     b.Property<DateTime>("ModifiedDate");
 
-                    b.Property<int>("OrderID");
+                    b.Property<int>("OrderId");
 
-                    b.Property<bool>("Status");
+                    b.Property<byte>("Status");
+
+                    b.Property<int>("Tax");
 
                     b.Property<float>("TotalPrice");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("OrderID");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("tblBill");
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.BillDetail", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BillID");
+                    b.Property<int>("BillId");
 
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<DateTime>("ModifiedDate");
 
-                    b.Property<int>("OrderDetailID");
+                    b.HasKey("Id");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("BillID");
-
-                    b.HasIndex("OrderDetailID");
+                    b.HasIndex("BillId");
 
                     b.ToTable("tblBillDetail");
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.CategoryProduct", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -160,7 +210,7 @@ namespace DYDN_Company.Migrations
 
                     b.Property<bool>("Status");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("Code")
                         .IsUnique();
@@ -174,7 +224,7 @@ namespace DYDN_Company.Migrations
 
             modelBuilder.Entity("DYDN_Company.Models.Department", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -190,7 +240,7 @@ namespace DYDN_Company.Migrations
 
                     b.Property<bool>("Status");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("Code")
                         .IsUnique();
@@ -202,62 +252,9 @@ namespace DYDN_Company.Migrations
                     b.ToTable("tblDepartment");
                 });
 
-            modelBuilder.Entity("DYDN_Company.Models.Employee", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<DateTime>("Birthday");
-
-                    b.Property<string>("Code")
-                        .IsRequired();
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<int>("DepartmentID");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<bool>("Gender");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Password")
-                        .IsRequired();
-
-                    b.Property<string>("Phone")
-                        .IsRequired();
-
-                    b.Property<string>("Role")
-                        .IsRequired();
-
-                    b.Property<bool>("Status");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("Code")
-                        .IsUnique();
-
-                    b.HasIndex("DepartmentID");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("tblEmployee");
-                });
-
             modelBuilder.Entity("DYDN_Company.Models.Factory", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -273,7 +270,7 @@ namespace DYDN_Company.Migrations
 
                     b.Property<bool>("Status");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("Code")
                         .IsUnique();
@@ -285,55 +282,32 @@ namespace DYDN_Company.Migrations
                     b.ToTable("tblFactory");
                 });
 
-            modelBuilder.Entity("DYDN_Company.Models.HistoryBill", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BillID");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("BillID");
-
-                    b.ToTable("tblHistoryBill");
-                });
-
             modelBuilder.Entity("DYDN_Company.Models.Order", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AccountID");
+                    b.Property<int>("AccountUserId");
 
                     b.Property<DateTime>("CreatedDate");
-
-                    b.Property<string>("Description");
-
-                    b.Property<int?>("HistoryBillID");
 
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
                         .HasMaxLength(30);
 
+                    b.Property<string>("Note");
+
                     b.Property<bool>("Status");
 
-                    b.Property<int>("TotalPrice");
+                    b.Property<int>("TotalAmount");
 
                     b.Property<int>("TotalQuantity");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("AccountID");
-
-                    b.HasIndex("HistoryBillID");
+                    b.HasIndex("AccountUserId");
 
                     b.HasIndex("Name")
                         .IsUnique()
@@ -344,7 +318,7 @@ namespace DYDN_Company.Migrations
 
             modelBuilder.Entity("DYDN_Company.Models.OrderDetail", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -352,28 +326,32 @@ namespace DYDN_Company.Migrations
 
                     b.Property<DateTime>("ModifiedDate");
 
+                    b.Property<int>("OrderId");
+
                     b.Property<float>("Price");
 
-                    b.Property<int>("ProductID");
+                    b.Property<int>("ProductId");
 
                     b.Property<int>("Quantity");
 
                     b.Property<bool>("Status");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("tblOrderDetail");
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.Product", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryID");
+                    b.Property<int>("CategoryId");
 
                     b.Property<string>("Code")
                         .IsRequired();
@@ -382,6 +360,8 @@ namespace DYDN_Company.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Images");
+
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
@@ -389,15 +369,15 @@ namespace DYDN_Company.Migrations
 
                     b.Property<float>("Price");
 
-                    b.Property<bool>("Status");
+                    b.Property<float>("SalePrice");
 
-                    b.Property<double>("Tax");
+                    b.Property<bool>("Status");
 
                     b.Property<int>("WareHouseID");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("Code")
                         .IsUnique();
@@ -413,7 +393,7 @@ namespace DYDN_Company.Migrations
 
             modelBuilder.Entity("DYDN_Company.Models.WareHouse", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -422,7 +402,7 @@ namespace DYDN_Company.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int>("FactoryID");
+                    b.Property<int>("FactoryId");
 
                     b.Property<DateTime>("ModifiedDate");
 
@@ -431,14 +411,15 @@ namespace DYDN_Company.Migrations
 
                     b.Property<int>("Quantity");
 
-                    b.Property<bool>("Status");
+                    b.Property<byte>("Status");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.HasIndex("FactoryID");
+                    b.HasIndex("FactoryId")
+                        .IsUnique();
 
                     b.HasIndex("Name")
                         .IsUnique()
@@ -447,81 +428,69 @@ namespace DYDN_Company.Migrations
                     b.ToTable("tblWareHouse");
                 });
 
+            modelBuilder.Entity("DYDN_Company.Models.AccountAdmin", b =>
+                {
+                    b.HasOne("DYDN_Company.Models.Department", "Departments")
+                        .WithMany("AccountAdmins")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("DYDN_Company.Models.Bill", b =>
                 {
                     b.HasOne("DYDN_Company.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderID")
+                        .WithMany("Bills")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.BillDetail", b =>
                 {
                     b.HasOne("DYDN_Company.Models.Bill", "Bill")
-                        .WithMany()
-                        .HasForeignKey("BillID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DYDN_Company.Models.OrderDetail", "OrderDetail")
-                        .WithMany()
-                        .HasForeignKey("OrderDetailID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DYDN_Company.Models.Employee", b =>
-                {
-                    b.HasOne("DYDN_Company.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DYDN_Company.Models.HistoryBill", b =>
-                {
-                    b.HasOne("DYDN_Company.Models.Bill", "Bill")
-                        .WithMany()
-                        .HasForeignKey("BillID")
+                        .WithMany("BillDetails")
+                        .HasForeignKey("BillId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.Order", b =>
                 {
-                    b.HasOne("DYDN_Company.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountID")
+                    b.HasOne("DYDN_Company.Models.AccountUser", "AccountUser")
+                        .WithMany("Orders")
+                        .HasForeignKey("AccountUserId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DYDN_Company.Models.HistoryBill")
-                        .WithMany("Order")
-                        .HasForeignKey("HistoryBillID");
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.OrderDetail", b =>
                 {
+                    b.HasOne("DYDN_Company.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("DYDN_Company.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductID")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.Product", b =>
                 {
                     b.HasOne("DYDN_Company.Models.CategoryProduct", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DYDN_Company.Models.WareHouse", "WareHouse")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("WareHouseID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DYDN_Company.Models.WareHouse", b =>
                 {
-                    b.HasOne("DYDN_Company.Models.Factory", "Factory")
-                        .WithMany()
-                        .HasForeignKey("FactoryID")
+                    b.HasOne("DYDN_Company.Models.Factory", "Factorys")
+                        .WithOne("WareHouses")
+                        .HasForeignKey("DYDN_Company.Models.WareHouse", "FactoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

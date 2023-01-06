@@ -43,8 +43,8 @@ namespace DYDN_Company.Controllers
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var tokeOptions = new JwtSecurityToken(
-                    issuer: "https://localhost:5001",
-                    audience: "https://localhost:5001",
+                    issuer: "http://localhost:54195/",
+                    audience: "http://localhost:54195/",
                     claims: new List<Claim>(),
                     expires: DateTime.Now.AddMinutes(5),
                     signingCredentials: signinCredentials
@@ -54,14 +54,49 @@ namespace DYDN_Company.Controllers
             }
             return Unauthorized();
         }
+       
         // GET: api/AccountAdmin
         [HttpGet]
-        public IEnumerable<AccountAdmin> GetAccountAdmins()
+        public IEnumerable<AccountAdminDisplay> GetAccountAdmins()
         {
-            //var accounts = from p in _context.AccountAdmins
-            //               select new AccountAdmin { Id = p.Id, Name = p.Name, Code = p.Code, Gender = p.Gender , Birthday = p.Birthday, Address = p.Address, Email = p.Email, Phone = p.Phone, Status = p.Status, Password = p.Password, Role = p.Role, DepartmentId = p.DepartmentId,DepartmentName = p.DepartmentName };
-            //return accounts.Where(b => b.Status == true);
-          return _context.AccountAdmins.Where(b => b.Status == true);
+          var data=  _context.AccountAdmins
+        .Join(_context.Departments, ai => ai.DepartmentId,
+              al => al.Id, (ai, al) => new
+              {
+                  Id = ai.Id,
+                  Code = ai.Code,
+                  Name = ai.Name,
+                  Gender = ai.Gender,
+                  Birthday = ai.Birthday,
+                  Address = ai.Address,
+                  Email = ai.Email,
+                  Phone = ai.Phone,
+                  Status = ai.Status,
+                  Password = ai.Password,
+                  Role = ai.Role,
+                  DepartmentId = ai.DepartmentId,
+                  CreatedDate = ai.CreatedDate,
+                  ModifiedDate = ai.ModifiedDate,
+                  DepartmentName = al.Name
+              }).Select(x => new AccountAdminDisplay()
+              {
+                  Id = x.Id,
+                  Code = x.Code,
+                  Name = x.Name,
+                  Gender = x.Gender,
+                  Birthday = x.Birthday,
+                  Address = x.Address,
+                  Phone = x.Phone,
+                  Status = x.Status,
+                  Password = x.Password,
+                  Role = x.Role,
+                  Email = x.Email,
+                  DepartmentId = x.DepartmentId,
+                  CreatedDate = x.CreatedDate,
+                  ModifiedDate = x.ModifiedDate,
+                  DepartmentName = x.DepartmentName
+              }).Where(x => x.Status == true).ToList();
+            return data;
         }
 
         // GET: api/AccountAdmin/5
@@ -74,7 +109,6 @@ namespace DYDN_Company.Controllers
             }
 
             var accountAdmin = await _context.AccountAdmins.FindAsync(id);
-
             if (accountAdmin == null)
             {
                 return NotFound();
@@ -92,14 +126,47 @@ namespace DYDN_Company.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-
-
             _context.Entry(accountAdmin).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
+                accountAdmin = _context.AccountAdmins.Join(_context.Departments, ai => ai.DepartmentId,al => al.Id, (ai, al) => new
+               {
+                   Id = ai.Id,
+                   Code = ai.Code,
+                   Name = ai.Name,
+                   Gender = ai.Gender,
+                   Birthday = ai.Birthday,
+                   Address = ai.Address,
+                   Email = ai.Email,
+                   Phone = ai.Phone,
+                   Status = ai.Status,
+                   Password = ai.Password,
+                   Role = ai.Role,
+                   DepartmentId = ai.DepartmentId,
+                   CreatedDate = ai.CreatedDate,
+                   ModifiedDate = ai.ModifiedDate,
+                   DepartmentName = al.Name
+               }).Where(x => x.Id == accountAdmin.Id).Select(x => new AccountAdminDisplay()
+               {
+                   Id = x.Id,
+                   Code = x.Code,
+                   Name = x.Name,
+                   Gender = x.Gender,
+                   Birthday = x.Birthday,
+                   Address = x.Address,
+                   Phone = x.Phone,
+                   Status = x.Status,
+                   Password = x.Password,
+                   Role = x.Role,
+                   Email = x.Email,
+                   DepartmentId = x.DepartmentId,
+                   CreatedDate = x.CreatedDate,
+                   ModifiedDate = x.ModifiedDate,
+                   DepartmentName = x.DepartmentName
+               }).FirstOrDefault();
+                
+                return Ok(accountAdmin);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -119,13 +186,87 @@ namespace DYDN_Company.Controllers
             }
             _context.AccountAdmins.Add(accountAdmin);
             await _context.SaveChangesAsync();
+             accountAdmin = _context.AccountAdmins
+           .Join(_context.Departments, ai => ai.DepartmentId,
+                 al => al.Id, (ai, al) => new
+                 {
+                     Id = ai.Id,
+                     Code = ai.Code,
+                     Name = ai.Name,
+                     Gender = ai.Gender,
+                     Birthday = ai.Birthday,
+                     Address = ai.Address,
+                     Email = ai.Email,
+                     Phone = ai.Phone,
+                     Status = ai.Status,
+                     Password = ai.Password,
+                     Role = ai.Role,
+                     DepartmentId = ai.DepartmentId,
+                     CreatedDate = ai.CreatedDate,
+                     ModifiedDate = ai.ModifiedDate,
+                     DepartmentName = al.Name
+                 }).Where(x => x.Id == accountAdmin.Id).Select(x => new AccountAdminDisplay()
+                 {
+                     Id = x.Id,
+                     Code = x.Code,
+                     Name = x.Name,
+                     Gender = x.Gender,
+                     Birthday = x.Birthday,
+                     Address = x.Address,
+                     Phone = x.Phone,
+                     Status = x.Status,
+                     Password = x.Password,
+                     Role = x.Role,
+                     Email = x.Email,
+                     DepartmentId = x.DepartmentId,
+                     CreatedDate = x.CreatedDate,
+                     ModifiedDate = x.ModifiedDate,
+                     DepartmentName = x.DepartmentName
+                 }).FirstOrDefault();
             return CreatedAtAction("GetAccountAdmin", new { id = accountAdmin.Id }, accountAdmin);
         }
         [HttpGet]
         [Route("TrashAccountAdmin")]
         public IEnumerable<AccountAdmin> GetTrashAccountAdmin()
         {
-            return _context.AccountAdmins.Where(b => b.Status == false);
+            var data = _context.AccountAdmins
+        .Join(_context.Departments, ai => ai.DepartmentId,
+              al => al.Id, (ai, al) => new
+              {
+                  Id = ai.Id,
+                  Code = ai.Code,
+                  Name = ai.Name,
+                  Gender = ai.Gender,
+                  Birthday = ai.Birthday,
+                  Address = ai.Address,
+                  Email = ai.Email,
+                  Phone = ai.Phone,
+                  Status = ai.Status,
+                  Password = ai.Password,
+                  Role = ai.Role,
+                  DepartmentId = ai.DepartmentId,
+                  CreatedDate = ai.CreatedDate,
+                  ModifiedDate = ai.ModifiedDate,
+                  DepartmentName = al.Name
+              }).Select(x => new AccountAdminDisplay()
+              {
+                  Id = x.Id,
+                  Code = x.Code,
+                  Name = x.Name,
+                  Gender = x.Gender,
+                  Birthday = x.Birthday,
+                  Address = x.Address,
+                  Phone = x.Phone,
+                  Status = x.Status,
+                  Password = x.Password,
+                  Role = x.Role,
+                  Email = x.Email,
+                  DepartmentId = x.DepartmentId,
+                  CreatedDate = x.CreatedDate,
+                  ModifiedDate = x.ModifiedDate,
+                  DepartmentName = x.DepartmentName
+              }).Where(x => x.Status == false).ToList();
+            return data;
         }
         [HttpPost]
         [Route("RepeatAccountAdmin")]

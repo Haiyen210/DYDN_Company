@@ -13,56 +13,56 @@ namespace DYDN_Company.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("AddCors")]
-    public class DepartmentController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly AppDBContext _context;
 
-        public DepartmentController(AppDBContext context)
+        public ProductController(AppDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Department
+        // GET: api/Product
         [HttpGet]
-        public IEnumerable<Department> GetDepartments()
+        public IEnumerable<Product> GetProducts()
         {
-            return _context.Departments;
+            return _context.Products;
         }
 
-        // GET: api/Department/5
+        // GET: api/Product/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetDepartment([FromRoute] int? id)
+        public async Task<IActionResult> GetProduct([FromRoute] int? id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var department = await _context.Departments.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
 
-            if (department == null)
+            if (product == null)
             {
                 return NotFound();
             }
 
-            return Ok(department);
+            return Ok(product);
         }
 
-        // PUT: api/Department/5
+        // PUT: api/Product/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDepartment([FromRoute] int? id, [FromBody] Department department)
+        public async Task<IActionResult> PutProduct([FromRoute] int? id, [FromBody] Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != department.Id)
+            if (id != product.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(department).State = EntityState.Modified;
+            _context.Entry(product).State = EntityState.Modified;
 
             try
             {
@@ -70,7 +70,7 @@ namespace DYDN_Company.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DepartmentExists(id))
+                if (!ProductExists(id))
                 {
                     return NotFound();
                 }
@@ -83,45 +83,45 @@ namespace DYDN_Company.Controllers
             return NoContent();
         }
 
-        // POST: api/Department
+        // POST: api/Product
         [HttpPost]
-        public async Task<IActionResult> PostDepartment([FromBody] Department department)
+        public async Task<IActionResult> PostProduct([FromBody] Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Departments.Add(department);
+            _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDepartment", new { id = department.Id }, department);
+            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
 
-        // DELETE: api/Department/5
+        // DELETE: api/Product/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDepartment([FromRoute] int? id)
+        public async Task<IActionResult> DeleteProduct([FromRoute] int? id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var department = await _context.Departments.FindAsync(id);
-            if (department == null)
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
             {
                 return NotFound();
             }
 
-            _context.Departments.Remove(department);
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
-            return Ok(department);
+            return Ok(product);
         }
 
-        private bool DepartmentExists(int? id)
+        private bool ProductExists(int? id)
         {
-            return _context.Departments.Any(e => e.Id == id);
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }

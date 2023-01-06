@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DYDN_Company.Migrations
 {
-    public partial class Initial2 : Migration
+    public partial class v8 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -170,7 +170,7 @@ namespace DYDN_Company.Migrations
                     Name = table.Column<string>(maxLength: 30, nullable: true),
                     Quantity = table.Column<int>(nullable: false),
                     Status = table.Column<byte>(nullable: false),
-                    Factory = table.Column<int>(nullable: true),
+                    FactoryId = table.Column<int>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false)
                 },
@@ -178,11 +178,11 @@ namespace DYDN_Company.Migrations
                 {
                     table.PrimaryKey("PK_tblWareHouse", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tblWareHouse_tblFactory_Factory",
-                        column: x => x.Factory,
+                        name: "FK_tblWareHouse_tblFactory_FactoryId",
+                        column: x => x.FactoryId,
                         principalTable: "tblFactory",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -426,11 +426,10 @@ namespace DYDN_Company.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_tblWareHouse_Factory",
+                name: "IX_tblWareHouse_FactoryId",
                 table: "tblWareHouse",
-                column: "Factory",
-                unique: true,
-                filter: "[Factory] IS NOT NULL");
+                column: "FactoryId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tblWareHouse_Name",

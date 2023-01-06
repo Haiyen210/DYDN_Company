@@ -22,6 +22,6 @@ namespace DYDN_Company.Models
         public bool Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public virtual ICollection<AccountAdmin> AccountAdmins { get; set; }
+        public ICollection<AccountAdmin> AccountAdmins { get; set; }
     }
 }

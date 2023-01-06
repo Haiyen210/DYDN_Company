@@ -13,52 +13,56 @@ namespace DYDN_Company.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("AddCors")]
-    public class FactoryController : ControllerBase
+    public class BillsController : ControllerBase
     {
         private readonly AppDBContext _context;
 
-        public FactoryController(AppDBContext context)
+        public BillsController(AppDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Factory
+        // GET: api/Bills
         [HttpGet]
-        public IEnumerable<Factory> GetFactories()
+        public IEnumerable<Bill> GetBills()
         {
-            return _context.Factories;
+            return _context.Bills;
         }
 
-        // GET: api/Factory/5
+        // GET: api/Bills/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetFactory([FromRoute] int? id)
+        public async Task<IActionResult> GetBill([FromRoute] int? id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var factory = await _context.Factories.FindAsync(id);
+            var bill = await _context.Bills.FindAsync(id);
 
-            if (factory == null)
+            if (bill == null)
             {
                 return NotFound();
             }
 
-            return Ok(factory);
+            return Ok(bill);
         }
 
-        // PUT: api/Factory/5
-        [HttpPost]
-        [Route("PutFacrory")]
-        public async Task<IActionResult> PutFactory( [FromBody] Factory factory)
+        // PUT: api/Bills/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutBill([FromRoute] int? id, [FromBody] Bill bill)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            factory.ModifiedDate = DateTime.Now;
-            _context.Entry(factory).State = EntityState.Modified;
+
+            if (id != bill.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(bill).State = EntityState.Modified;
 
             try
             {
@@ -66,51 +70,58 @@ namespace DYDN_Company.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-
+                if (!BillExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return NoContent();
         }
 
-        // POST: api/Factory
+        // POST: api/Bills
         [HttpPost]
-        public async Task<IActionResult> PostFactory([FromBody] Factory factory)
+        public async Task<IActionResult> PostBill([FromBody] Bill bill)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            factory.CreatedDate = DateTime.Now;
-            _context.Factories.Add(factory);
+
+            _context.Bills.Add(bill);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFactory", new { id = factory.Id }, factory);
+            return CreatedAtAction("GetBill", new { id = bill.Id }, bill);
         }
 
-        // DELETE: api/Factory/5
+        // DELETE: api/Bills/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFactory([FromRoute] int? id)
+        public async Task<IActionResult> DeleteBill([FromRoute] int? id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var factory = await _context.Factories.FindAsync(id);
-            if (factory == null)
+            var bill = await _context.Bills.FindAsync(id);
+            if (bill == null)
             {
                 return NotFound();
             }
 
-            _context.Factories.Remove(factory);
+            _context.Bills.Remove(bill);
             await _context.SaveChangesAsync();
 
-            return Ok(factory);
+            return Ok(bill);
         }
 
-        private bool FactoryExists(int? id)
+        private bool BillExists(int? id)
         {
-            return _context.Factories.Any(e => e.Id == id);
+            return _context.Bills.Any(e => e.Id == id);
         }
     }
 }

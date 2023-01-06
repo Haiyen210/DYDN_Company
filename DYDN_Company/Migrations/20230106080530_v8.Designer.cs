@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DYDN_Company.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20230103170043_Initial2")]
-    partial class Initial2
+    [Migration("20230106080530_v8")]
+    partial class v8
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -404,7 +404,7 @@ namespace DYDN_Company.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int?>("Factory");
+                    b.Property<int>("FactoryId");
 
                     b.Property<DateTime>("ModifiedDate");
 
@@ -420,9 +420,8 @@ namespace DYDN_Company.Migrations
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.HasIndex("Factory")
-                        .IsUnique()
-                        .HasFilter("[Factory] IS NOT NULL");
+                    b.HasIndex("FactoryId")
+                        .IsUnique();
 
                     b.HasIndex("Name")
                         .IsUnique()
@@ -493,7 +492,8 @@ namespace DYDN_Company.Migrations
                 {
                     b.HasOne("DYDN_Company.Models.Factory", "Factorys")
                         .WithOne("WareHouses")
-                        .HasForeignKey("DYDN_Company.Models.WareHouse", "Factory");
+                        .HasForeignKey("DYDN_Company.Models.WareHouse", "FactoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

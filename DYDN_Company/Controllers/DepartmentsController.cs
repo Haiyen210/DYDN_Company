@@ -6,61 +6,63 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DYDN_Company.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace DYDN_Company.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderDetailsController : ControllerBase
+    [EnableCors("AddCors")]
+    public class DepartmentsController : ControllerBase
     {
         private readonly AppDBContext _context;
 
-        public OrderDetailsController(AppDBContext context)
+        public DepartmentsController(AppDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/OrderDetails
+        // GET: api/Departments
         [HttpGet]
-        public IEnumerable<OrderDetail> GetOrderDetails()
+        public IEnumerable<Department> GetDepartments()
         {
-            return _context.OrderDetails;
+            return _context.Departments;
         }
 
-        // GET: api/OrderDetails/5
+        // GET: api/Departments/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOrderDetail([FromRoute] int? id)
+        public async Task<IActionResult> GetDepartment([FromRoute] int? id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var orderDetail = await _context.OrderDetails.FindAsync(id);
+            var department = await _context.Departments.FindAsync(id);
 
-            if (orderDetail == null)
+            if (department == null)
             {
                 return NotFound();
             }
 
-            return Ok(orderDetail);
+            return Ok(department);
         }
 
-        // PUT: api/OrderDetails/5
+        // PUT: api/Departments/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrderDetail([FromRoute] int? id, [FromBody] OrderDetail orderDetail)
+        public async Task<IActionResult> PutDepartment([FromRoute] int? id, [FromBody] Department department)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != orderDetail.Id)
+            if (id != department.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(orderDetail).State = EntityState.Modified;
+            _context.Entry(department).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +70,7 @@ namespace DYDN_Company.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderDetailExists(id))
+                if (!DepartmentExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +83,45 @@ namespace DYDN_Company.Controllers
             return NoContent();
         }
 
-        // POST: api/OrderDetails
+        // POST: api/Departments
         [HttpPost]
-        public async Task<IActionResult> PostOrderDetail([FromBody] OrderDetail orderDetail)
+        public async Task<IActionResult> PostDepartment([FromBody] Department department)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.OrderDetails.Add(orderDetail);
+            _context.Departments.Add(department);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrderDetail", new { id = orderDetail.Id }, orderDetail);
+            return CreatedAtAction("GetDepartment", new { id = department.Id }, department);
         }
 
-        // DELETE: api/OrderDetails/5
+        // DELETE: api/Departments/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrderDetail([FromRoute] int? id)
+        public async Task<IActionResult> DeleteDepartment([FromRoute] int? id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var orderDetail = await _context.OrderDetails.FindAsync(id);
-            if (orderDetail == null)
+            var department = await _context.Departments.FindAsync(id);
+            if (department == null)
             {
                 return NotFound();
             }
 
-            _context.OrderDetails.Remove(orderDetail);
+            _context.Departments.Remove(department);
             await _context.SaveChangesAsync();
 
-            return Ok(orderDetail);
+            return Ok(department);
         }
 
-        private bool OrderDetailExists(int? id)
+        private bool DepartmentExists(int? id)
         {
-            return _context.OrderDetails.Any(e => e.Id == id);
+            return _context.Departments.Any(e => e.Id == id);
         }
     }
 }

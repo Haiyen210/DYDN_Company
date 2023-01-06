@@ -20,7 +20,7 @@ namespace DYDN_Company.Models
         public string Name { get; set; }
         [DefaultValue(true)]
         public bool Status { get; set; }
-        public virtual WareHouse WareHouses { get; set; }
+        public  WareHouse WareHouses { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
        

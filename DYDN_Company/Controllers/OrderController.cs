@@ -13,52 +13,56 @@ namespace DYDN_Company.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("AddCors")]
-    public class FactoryController : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly AppDBContext _context;
 
-        public FactoryController(AppDBContext context)
+        public OrderController(AppDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Factory
+        // GET: api/Order
         [HttpGet]
-        public IEnumerable<Factory> GetFactories()
+        public IEnumerable<Order> GetOrders()
         {
-            return _context.Factories;
+            return _context.Orders;
         }
 
-        // GET: api/Factory/5
+        // GET: api/Order/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetFactory([FromRoute] int? id)
+        public async Task<IActionResult> GetOrder([FromRoute] int? id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var factory = await _context.Factories.FindAsync(id);
+            var order = await _context.Orders.FindAsync(id);
 
-            if (factory == null)
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return Ok(factory);
+            return Ok(order);
         }
 
-        // PUT: api/Factory/5
-        [HttpPost]
-        [Route("PutFacrory")]
-        public async Task<IActionResult> PutFactory( [FromBody] Factory factory)
+        // PUT: api/Order/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutOrder([FromRoute] int? id, [FromBody] Order order)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            factory.ModifiedDate = DateTime.Now;
-            _context.Entry(factory).State = EntityState.Modified;
+
+            if (id != order.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(order).State = EntityState.Modified;
 
             try
             {
@@ -66,51 +70,58 @@ namespace DYDN_Company.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-
+                if (!OrderExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return NoContent();
         }
 
-        // POST: api/Factory
+        // POST: api/Order
         [HttpPost]
-        public async Task<IActionResult> PostFactory([FromBody] Factory factory)
+        public async Task<IActionResult> PostOrder([FromBody] Order order)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            factory.CreatedDate = DateTime.Now;
-            _context.Factories.Add(factory);
+
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFactory", new { id = factory.Id }, factory);
+            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
         }
 
-        // DELETE: api/Factory/5
+        // DELETE: api/Order/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFactory([FromRoute] int? id)
+        public async Task<IActionResult> DeleteOrder([FromRoute] int? id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var factory = await _context.Factories.FindAsync(id);
-            if (factory == null)
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            _context.Factories.Remove(factory);
+            _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
 
-            return Ok(factory);
+            return Ok(order);
         }
 
-        private bool FactoryExists(int? id)
+        private bool OrderExists(int? id)
         {
-            return _context.Factories.Any(e => e.Id == id);
+            return _context.Orders.Any(e => e.Id == id);
         }
     }
 }

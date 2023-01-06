@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace DYDN_Company.Controllers
         [HttpGet]
         public IEnumerable<AccountUser> GetAccountUsers()
         {
-            return _context.AccountUsers.Where(b=>b.Status == true);
+            return _context.AccountUsers.Where(b => b.Status == true);
         }
         [HttpGet]
         [Route("TrashAccountUsers")]

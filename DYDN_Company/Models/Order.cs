@@ -12,19 +12,21 @@ namespace DYDN_Company.Models
     public class Order
     {
         [Key]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [MaxLength(30, ErrorMessage = "Max of length is 30 characters")]
         [MinLength(2, ErrorMessage = "This field can't least 2 characters")]
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string Note { get; set; }
         // Foreign Key - tblAccount
-        public int AccountID { get; set; }
-        public AccountUser Account { get; set; }
+        public int AccountUserId { get; set; }
+        public AccountUser AccountUser { get; set; }
         public int TotalQuantity { get; set; }
-        public int TotalPrice { get; set; }
+        public int TotalAmount { get; set; }
         [DefaultValue(false)]
         public bool Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public ICollection<Bill> Bills { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

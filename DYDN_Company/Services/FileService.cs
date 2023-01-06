@@ -26,10 +26,20 @@ namespace DYDN_Company.Services
                 //{
                 //    System.IO.File.Delete(file.FileName);
                 //}
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                try
                 {
-                    await file.CopyToAsync(stream);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
                 }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+ 
+                
             });
         }
 

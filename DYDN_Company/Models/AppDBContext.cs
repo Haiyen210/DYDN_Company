@@ -14,7 +14,7 @@ namespace DYDN_Company.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            
             // Set Idenity for primary key
             modelBuilder.Entity<AccountUser>(entity =>
             {
@@ -60,7 +60,7 @@ namespace DYDN_Company.Models
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
-
+            
             // Set Unique Constraint
             modelBuilder.Entity<AccountUser>().HasIndex(account => account.Email).IsUnique();
             modelBuilder.Entity<AccountUser>().HasIndex(account => account.Code).IsUnique();
@@ -77,10 +77,10 @@ namespace DYDN_Company.Models
             modelBuilder.Entity<Factory>().HasIndex(factory => factory.Name).IsUnique();
             modelBuilder.Entity<Factory>().HasIndex(factory => factory.Code).IsUnique();
             modelBuilder.Entity<Order>().HasIndex(order => order.Name).IsUnique();
-            modelBuilder.Entity<AccountAdmin>()
-           .HasOne(b => b.Departments)
-           .WithMany(b => b.AccountAdmins)
-            .HasForeignKey(p => p.DepartmentId);
+            modelBuilder.Entity<Factory>()
+           .HasOne(b => b.WareHouses)
+           .WithOne(i => i.Factorys)
+           .HasForeignKey<WareHouse>(b => b.FactoryId);
         }
 
         public DbSet<AccountUser> AccountUsers { get; set; }
