@@ -15,7 +15,8 @@ namespace DYDN_Company.Models
         public int? Id { get; set; }
         [Required(ErrorMessage = "This field can't blank")]
         public string Code { get; set; }
-        [MaxLength(30, ErrorMessage = "Max of length is 30 characters")]
+
+        [MaxLength(250, ErrorMessage = "Max of length is 250 characters")]
         [MinLength(2, ErrorMessage = "This field can't least 2 characters")]
         public string Name { get; set; }
         [DefaultValue(true)]

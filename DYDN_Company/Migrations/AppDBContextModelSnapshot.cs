@@ -46,7 +46,7 @@ namespace DYDN_Company.Migrations
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(30);
+                        .HasMaxLength(250);
 
                     b.Property<string>("Password")
                         .IsRequired();
@@ -96,7 +96,7 @@ namespace DYDN_Company.Migrations
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(30);
+                        .HasMaxLength(250);
 
                     b.Property<string>("Password")
                         .IsRequired();
@@ -137,7 +137,7 @@ namespace DYDN_Company.Migrations
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(30);
+                        .HasMaxLength(250);
 
                     b.Property<bool>("Status");
 
@@ -206,7 +206,7 @@ namespace DYDN_Company.Migrations
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(30);
+                        .HasMaxLength(250);
 
                     b.Property<bool>("Status");
 
@@ -236,7 +236,7 @@ namespace DYDN_Company.Migrations
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(30);
+                        .HasMaxLength(250);
 
                     b.Property<bool>("Status");
 
@@ -266,7 +266,7 @@ namespace DYDN_Company.Migrations
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(30);
+                        .HasMaxLength(250);
 
                     b.Property<bool>("Status");
 
@@ -365,9 +365,11 @@ namespace DYDN_Company.Migrations
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(30);
+                        .HasMaxLength(250);
 
                     b.Property<float>("Price");
+
+                    b.Property<int>("Quantity");
 
                     b.Property<float>("SalePrice");
 
@@ -402,14 +404,12 @@ namespace DYDN_Company.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int>("FactoryId");
+                    b.Property<int>("FactoryID");
 
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(30);
-
-                    b.Property<int>("Quantity");
+                        .HasMaxLength(250);
 
                     b.Property<byte>("Status");
 
@@ -418,7 +418,7 @@ namespace DYDN_Company.Migrations
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.HasIndex("FactoryId")
+                    b.HasIndex("FactoryID")
                         .IsUnique();
 
                     b.HasIndex("Name")
@@ -490,7 +490,7 @@ namespace DYDN_Company.Migrations
                 {
                     b.HasOne("DYDN_Company.Models.Factory", "Factorys")
                         .WithOne("WareHouses")
-                        .HasForeignKey("DYDN_Company.Models.WareHouse", "FactoryId")
+                        .HasForeignKey("DYDN_Company.Models.WareHouse", "FactoryID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

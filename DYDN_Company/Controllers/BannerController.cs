@@ -64,6 +64,7 @@ namespace DYDN_Company.Controllers
 
             try
             {
+                banner.ModifiedDate = DateTime.Now;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -82,7 +83,7 @@ namespace DYDN_Company.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            banner.CreatedDate = DateTime.Now;
             _context.Banners.Add(banner);
             await _context.SaveChangesAsync();
 

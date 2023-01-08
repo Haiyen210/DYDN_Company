@@ -50,7 +50,7 @@ namespace DYDN_Company.Controllers
 
         // PUT: api/Factory/5
         [HttpPost]
-        [Route("PutFacrory")]
+        [Route("PutFactory")]
         public async Task<IActionResult> PutFactory( [FromBody] Factory factory)
         {
             if (!ModelState.IsValid)

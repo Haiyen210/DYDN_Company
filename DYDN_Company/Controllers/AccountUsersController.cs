@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,13 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DYDN_Company.Models;
-using Microsoft.AspNetCore.Cors;
 
 namespace DYDN_Company.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AddCors")]
     public class AccountUsersController : ControllerBase
     {
         private readonly AppDBContext _context;
@@ -27,7 +24,7 @@ namespace DYDN_Company.Controllers
         [HttpGet]
         public IEnumerable<AccountUser> GetAccountUsers()
         {
-            return _context.AccountUsers.Where(b => b.Status == true);
+            return _context.AccountUsers.Where(b=>b.Status == true);
         }
         [HttpGet]
         [Route("TrashAccountUsers")]
@@ -102,35 +99,24 @@ namespace DYDN_Company.Controllers
             return NoContent();
         }
         // PUT: api/AccountUsers/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccountUser([FromRoute] int? id, [FromBody] AccountUser accountUser)
+        [HttpPost]
+        [Route("PutAccountUser")]
+        public async Task<IActionResult> PutAccountUser( [FromBody] AccountUser accountUser)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != accountUser.Id)
-            {
-                return BadRequest();
-            }
-
             _context.Entry(accountUser).State = EntityState.Modified;
 
             try
             {
+                accountUser.ModifiedDate = DateTime.Now;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountUserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+              
             }
 
             return NoContent();
@@ -144,7 +130,7 @@ namespace DYDN_Company.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            accountUser.CreatedDate = DateTime.Now;
             _context.AccountUsers.Add(accountUser);
             await _context.SaveChangesAsync();
 

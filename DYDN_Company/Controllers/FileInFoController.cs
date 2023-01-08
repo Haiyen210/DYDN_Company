@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using DYDN_Company.Models;
 using static System.Net.Mime.MediaTypeNames;
 using DYDN_Company.Services;
+using System.Threading;
 
 namespace DYDN_Company.Controllers
 {
@@ -60,10 +61,9 @@ namespace DYDN_Company.Controllers
         {
             try
             {
-       
+                //Thread.Sleep(10000);
                 _fileService.SaveFile(files, subDirectory);
-
-                return Ok(new { files.Count, Size = FileService.SizeConverter(files.Sum(f => f.Length)) });
+                return Ok(new { files.Count, Size = FileService.SizeConverter(files.Sum(f => f.Length))});
             }
             catch (Exception exception)
             {

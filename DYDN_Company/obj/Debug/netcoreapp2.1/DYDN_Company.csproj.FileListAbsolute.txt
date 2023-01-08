@@ -51,7 +51,6 @@ E:\Project_sem3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.V
 E:\Project_sem3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.dll
 E:\Project_sem3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.pdb
 E:\Project_sem3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.csproj.CopyComplete
-C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.csprojAssemblyReference.cache
 C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
 C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
 C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
@@ -62,3 +61,4 @@ C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razo
 C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
 C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
 C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.csprojAssemblyReference.cache

@@ -66,6 +66,7 @@ namespace DYDN_Company.Controllers
 
             try
             {
+                department.ModifiedDate = DateTime.Now;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -91,7 +92,7 @@ namespace DYDN_Company.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            department.CreatedDate = DateTime.Now;
             _context.Departments.Add(department);
             await _context.SaveChangesAsync();
 

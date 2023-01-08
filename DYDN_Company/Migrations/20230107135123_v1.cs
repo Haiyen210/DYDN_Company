@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DYDN_Company.Migrations
 {
-    public partial class v8 : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,7 @@ namespace DYDN_Company.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 30, nullable: true),
+                    Name = table.Column<string>(maxLength: 250, nullable: true),
                     Gender = table.Column<bool>(nullable: true),
                     Birthday = table.Column<DateTime>(nullable: false),
                     Address = table.Column<string>(maxLength: 50, nullable: false),
@@ -39,7 +39,7 @@ namespace DYDN_Company.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 30, nullable: true),
+                    Name = table.Column<string>(maxLength: 250, nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Image = table.Column<string>(nullable: true),
                     Status = table.Column<bool>(nullable: false),
@@ -58,7 +58,7 @@ namespace DYDN_Company.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 30, nullable: true),
+                    Name = table.Column<string>(maxLength: 250, nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Status = table.Column<bool>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
@@ -76,7 +76,7 @@ namespace DYDN_Company.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 30, nullable: true),
+                    Name = table.Column<string>(maxLength: 250, nullable: true),
                     Status = table.Column<bool>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false)
@@ -93,7 +93,7 @@ namespace DYDN_Company.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 30, nullable: true),
+                    Name = table.Column<string>(maxLength: 250, nullable: true),
                     Status = table.Column<bool>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false)
@@ -136,7 +136,7 @@ namespace DYDN_Company.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 30, nullable: true),
+                    Name = table.Column<string>(maxLength: 250, nullable: true),
                     Gender = table.Column<bool>(nullable: true),
                     Birthday = table.Column<DateTime>(nullable: false),
                     Address = table.Column<string>(maxLength: 50, nullable: false),
@@ -167,10 +167,9 @@ namespace DYDN_Company.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 30, nullable: true),
-                    Quantity = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 250, nullable: true),
                     Status = table.Column<byte>(nullable: false),
-                    FactoryId = table.Column<int>(nullable: false),
+                    FactoryID = table.Column<int>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false)
                 },
@@ -178,8 +177,8 @@ namespace DYDN_Company.Migrations
                 {
                     table.PrimaryKey("PK_tblWareHouse", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tblWareHouse_tblFactory_FactoryId",
-                        column: x => x.FactoryId,
+                        name: "FK_tblWareHouse_tblFactory_FactoryID",
+                        column: x => x.FactoryID,
                         principalTable: "tblFactory",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -216,10 +215,11 @@ namespace DYDN_Company.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 30, nullable: true),
+                    Name = table.Column<string>(maxLength: 250, nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Price = table.Column<float>(nullable: false),
                     SalePrice = table.Column<float>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
                     Images = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     WareHouseID = table.Column<int>(nullable: false),
@@ -426,9 +426,9 @@ namespace DYDN_Company.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_tblWareHouse_FactoryId",
+                name: "IX_tblWareHouse_FactoryID",
                 table: "tblWareHouse",
-                column: "FactoryId",
+                column: "FactoryID",
                 unique: true);
 
             migrationBuilder.CreateIndex(

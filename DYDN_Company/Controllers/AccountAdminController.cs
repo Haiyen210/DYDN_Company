@@ -129,6 +129,7 @@ namespace DYDN_Company.Controllers
             _context.Entry(accountAdmin).State = EntityState.Modified;
             try
             {
+                accountAdmin.ModifiedDate = DateTime.Now;
                 await _context.SaveChangesAsync();
                 accountAdmin = _context.AccountAdmins.Join(_context.Departments, ai => ai.DepartmentId,al => al.Id, (ai, al) => new
                {
@@ -185,6 +186,7 @@ namespace DYDN_Company.Controllers
                 return BadRequest(ModelState);
             }
             _context.AccountAdmins.Add(accountAdmin);
+            accountAdmin.CreatedDate = DateTime.Now;
             await _context.SaveChangesAsync();
              accountAdmin = _context.AccountAdmins
            .Join(_context.Departments, ai => ai.DepartmentId,

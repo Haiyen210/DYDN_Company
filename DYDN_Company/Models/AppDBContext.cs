@@ -80,7 +80,7 @@ namespace DYDN_Company.Models
             modelBuilder.Entity<Factory>()
            .HasOne(b => b.WareHouses)
            .WithOne(i => i.Factorys)
-           .HasForeignKey<WareHouse>(b => b.FactoryId);
+           .HasForeignKey<WareHouse>(b => b.FactoryID);
         }
 
         public DbSet<AccountUser> AccountUsers { get; set; }
