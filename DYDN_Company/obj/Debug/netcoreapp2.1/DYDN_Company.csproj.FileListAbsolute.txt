@@ -62,3 +62,35 @@ C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razo
 C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
 C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
 C:\LTV\Sem3\Project-Sem-3\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.csprojAssemblyReference.cache
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\bin\Debug\netcoreapp2.1\DYDN_Company.deps.json
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\bin\Debug\netcoreapp2.1\DYDN_Company.runtimeconfig.json
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\bin\Debug\netcoreapp2.1\DYDN_Company.runtimeconfig.dev.json
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\bin\Debug\netcoreapp2.1\DYDN_Company.dll
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\bin\Debug\netcoreapp2.1\DYDN_Company.pdb
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\bin\Debug\netcoreapp2.1\DYDN_Company.Views.dll
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\bin\Debug\netcoreapp2.1\DYDN_Company.Views.pdb
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.AssemblyInfoInputs.cache
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.AssemblyInfo.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.csproj.CoreCompileInputs.cache
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.RazorAssemblyInfo.cache
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.RazorAssemblyInfo.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.TagHelpers.input.cache
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.TagHelpers.output.cache
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.RazorCoreGenerate.cache
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.RazorTargetAssemblyInfo.cache
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.RazorTargetAssemblyInfo.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.Views.pdb
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.dll
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.pdb
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.csproj.CopyComplete
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\DYDN_Company.csprojAssemblyReference.cache
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+C:\LTV\Sem3\Project-Sem-3\Group2_C2010I1_eProject_Sem3\DYDN Company System\DYDN_Company\DYDN_Company\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs

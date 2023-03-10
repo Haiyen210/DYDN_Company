@@ -21,11 +21,6 @@ namespace DYDN_Company.Services
             {
                 if (file.Length <= 0) return;
                 var filePath = Path.Combine(target, file.FileName);
-                // If file with same name exists delete it
-                //if (System.IO.File.Exists(file.FileName))
-                //{
-                //    System.IO.File.Delete(file.FileName);
-                //}
                 try
                 {
                     using (var stream = new FileStream(filePath, FileMode.Create))

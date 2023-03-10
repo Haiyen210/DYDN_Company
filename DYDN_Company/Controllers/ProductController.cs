@@ -49,7 +49,20 @@ namespace DYDN_Company.Controllers
               }).Where(x => x.Status == true).ToList();
             return data;
         }
-
+        [HttpGet]
+        [Route("ProductDESC")]
+        public IEnumerable<Product> GetProductsLaster()
+        {
+            var data = _context.Products.OrderByDescending(p => p.Id).Take(4);
+            return data;
+        }
+        [HttpGet]
+        [Route("ProductSale")]
+        public IEnumerable<Product> GetProductsSale()
+        {
+            var data = _context.Products.Where(p => p.SalePrice > 0).OrderByDescending(p => p.Id).Take(8);
+            return data;
+        }
         [HttpGet]
         [Route("TrashProduct")]
         public IEnumerable<Product> GetTrashProduct()
@@ -312,7 +325,45 @@ namespace DYDN_Company.Controllers
 
             return Ok(product);
         }
+        [HttpGet]
+        [Route("getcategory/{id}")]
+        public async Task<IActionResult> GetCategory([FromRoute] int? id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var data = _context.Products
+        .Join(_context.CategoryProducts, ai => ai.CategoryId,
+              al => al.Id, (ai, al) => new
+              {
+                  Id = ai.Id,
+                  Name = ai.Name,
+                  Code = ai.Code,
+                  CategoryId = ai.CategoryId,
+                  Description = ai.Description,
+                  Price = ai.Price,
+                  Quantity = ai.Quantity,
+                  Images = ai.Images,
+                  SalePrice = ai.SalePrice,
+                  Status = ai.Status,
 
+              }).Where(x => x.CategoryId == id).Select(x => new ProductDisplay
+              {
+                  Id = x.Id,
+                  Name = x.Name,
+                  Code = x.Code,
+                  CategoryId = x.CategoryId,
+                  Description = x.Description,
+                  Price = x.Price,
+                  Quantity = x.Quantity,
+                  Images = x.Images,
+                  SalePrice = x.SalePrice,
+                  Status = x.Status,
+              }).ToList();
+
+            return Ok(data);
+        }
         private bool ProductExists(int? id)
         {
             return _context.Products.Any(e => e.Id == id);

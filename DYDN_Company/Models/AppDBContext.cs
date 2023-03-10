@@ -24,14 +24,6 @@ namespace DYDN_Company.Models
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
-            modelBuilder.Entity<Bill>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            });
-            modelBuilder.Entity<BillDetail>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            });
             modelBuilder.Entity<CategoryProduct>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -76,7 +68,6 @@ namespace DYDN_Company.Models
             modelBuilder.Entity<WareHouse>().HasIndex(warehouse => warehouse.Name).IsUnique();
             modelBuilder.Entity<Factory>().HasIndex(factory => factory.Name).IsUnique();
             modelBuilder.Entity<Factory>().HasIndex(factory => factory.Code).IsUnique();
-            modelBuilder.Entity<Order>().HasIndex(order => order.Name).IsUnique();
             modelBuilder.Entity<Factory>()
            .HasOne(b => b.WareHouses)
            .WithOne(i => i.Factorys)
@@ -84,8 +75,6 @@ namespace DYDN_Company.Models
         }
 
         public DbSet<AccountUser> AccountUsers { get; set; }
-        public DbSet<Bill> Bills { get; set; }
-        public DbSet<BillDetail> BillDetails { get; set; }
         public DbSet<CategoryProduct> CategoryProducts { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<AccountAdmin> AccountAdmins { get; set; }

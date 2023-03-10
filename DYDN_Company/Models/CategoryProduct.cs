@@ -16,7 +16,7 @@ namespace DYDN_Company.Models
         [Required(ErrorMessage = "This field can't blank")]
         public string Code { get; set; }
 
-        [MaxLength(250, ErrorMessage = "Max of length is 30 characters")]
+        [MaxLength(250, ErrorMessage = "Max of length is 250 characters")]
         [MinLength(2, ErrorMessage = "This field can't least 2 characters")]
         public string Name { get; set; }
         public string Description { get; set; }
@@ -25,5 +25,15 @@ namespace DYDN_Company.Models
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public ICollection<Product> Products { get; set; }
+        public class CategoryProductDisplay : CategoryProduct
+        {
+            public string ProductCode { get; set; }
+            public string ProductName { get; set; }
+            public float ProductPrice { get; set; }
+            public float ProductSalePrice { get; set; }
+            public int ProductQuantity { get; set; }
+            public string ProductImages { get; set; }
+            public bool ProductStatus { get; set; }
+        }
     }
 }

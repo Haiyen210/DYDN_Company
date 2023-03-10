@@ -61,7 +61,6 @@ namespace DYDN_Company.Controllers
         {
             try
             {
-                //Thread.Sleep(10000);
                 _fileService.SaveFile(files, subDirectory);
                 return Ok(new { files.Count, Size = FileService.SizeConverter(files.Sum(f => f.Length))});
             }

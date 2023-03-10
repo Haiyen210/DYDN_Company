@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DYDN_Company.Models;
 using Microsoft.AspNetCore.Cors;
+using static DYDN_Company.Models.CategoryProduct;
 
 namespace DYDN_Company.Controllers
 {
@@ -28,7 +29,53 @@ namespace DYDN_Company.Controllers
         {
             return _context.CategoryProducts.Where(b=> b.Status == true);
         }
+        [HttpGet]
+        [Route("getProduct/{id}")]
+        public async Task<IActionResult> GetProductsByCategory([FromRoute] int? id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+
+            var data = _context.CategoryProducts
+        .Join(_context.Products, cate => cate.Id,
+              pro => pro.CategoryId, (cate, pro) => new
+              {
+                  Id = cate.Id,
+                  Code = cate.Code,
+                  Name = cate.Name,
+                  ProductCode = pro.Code,
+                  ProductName = pro.Name,
+                  ProductPrice = pro.Price,
+                  ProductSalePrice = pro.SalePrice,
+                  ProductQuantity = pro.Quantity,
+                  ProductImages = pro.Images,
+                  ProductStatus = pro.Status
+
+              }).Where(dis => dis.Id == id).Select(dis => new CategoryProductDisplay
+              {
+                  Id = dis.Id,
+                  Code = dis.Code,
+                  Name = dis.Name,
+                  ProductCode = dis.ProductCode,
+                  ProductName = dis.ProductName,
+                  ProductPrice = dis.ProductPrice,
+                  ProductSalePrice = dis.ProductSalePrice,
+                  ProductQuantity = dis.ProductQuantity,
+                  ProductImages = dis.ProductImages,
+                  ProductStatus = dis.ProductStatus
+
+              }).Where(dis => dis.ProductStatus == true).ToList();
+
+            if (data == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(data);
+        }
         [HttpGet]
         [Route("TrashCategoryProduct")]
         public IEnumerable<CategoryProduct> GetTrashCategoryProducts()
