@@ -13,20 +13,30 @@ namespace DYDN_Company.Models
     {
         [Key]
         public int? Id { get; set; }
-        [MaxLength(30, ErrorMessage = "Max of length is 30 characters")]
+        [MaxLength(250, ErrorMessage = "Max of length is 250 characters")]
+        [MinLength(2, ErrorMessage = "This field can't least 2 characters")]
+        public string Code { get; set; }
+        [MaxLength(250, ErrorMessage = "Max of length is 250 characters")]
         [MinLength(2, ErrorMessage = "This field can't least 2 characters")]
         public string Name { get; set; }
-        public string Note { get; set; }
+        [MaxLength(250, ErrorMessage = "Max of length is 250 characters")]
+        [MinLength(2, ErrorMessage = "This field can't least 2 characters")]
+        public string Address { get; set; }
+        [Required(ErrorMessage = "This field is REQUIRED")]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "Number phone is REQUIRED")]
+        public string Phone { get; set; }
+        public string Note { get; set; } = null;
         // Foreign Key - tblAccount
         public int AccountUserId { get; set; }
         public AccountUser AccountUser { get; set; }
         public int TotalQuantity { get; set; }
         public int TotalAmount { get; set; }
         [DefaultValue(false)]
-        public bool Status { get; set; }
+        public byte Status { get; set; }
+        public byte Payment { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public ICollection<Bill> Bills { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

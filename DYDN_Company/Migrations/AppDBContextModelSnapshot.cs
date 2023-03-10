@@ -146,50 +146,6 @@ namespace DYDN_Company.Migrations
                     b.ToTable("tblBanner");
                 });
 
-            modelBuilder.Entity("DYDN_Company.Models.Bill", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<byte>("Status");
-
-                    b.Property<int>("Tax");
-
-                    b.Property<float>("TotalPrice");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("tblBill");
-                });
-
-            modelBuilder.Entity("DYDN_Company.Models.BillDetail", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BillId");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("ModifiedDate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BillId");
-
-                    b.ToTable("tblBillDetail");
-                });
-
             modelBuilder.Entity("DYDN_Company.Models.CategoryProduct", b =>
                 {
                     b.Property<int?>("Id")
@@ -290,16 +246,30 @@ namespace DYDN_Company.Migrations
 
                     b.Property<int>("AccountUserId");
 
+                    b.Property<string>("Address")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(250);
+
                     b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(30);
+                        .HasMaxLength(250);
 
                     b.Property<string>("Note");
 
-                    b.Property<bool>("Status");
+                    b.Property<byte>("Payment");
+
+                    b.Property<string>("Phone")
+                        .IsRequired();
+
+                    b.Property<byte>("Status");
 
                     b.Property<int>("TotalAmount");
 
@@ -308,10 +278,6 @@ namespace DYDN_Company.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AccountUserId");
-
-                    b.HasIndex("Name")
-                        .IsUnique()
-                        .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("tblOrder");
                 });
@@ -433,22 +399,6 @@ namespace DYDN_Company.Migrations
                     b.HasOne("DYDN_Company.Models.Department", "Departments")
                         .WithMany("AccountAdmins")
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DYDN_Company.Models.Bill", b =>
-                {
-                    b.HasOne("DYDN_Company.Models.Order", "Order")
-                        .WithMany("Bills")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DYDN_Company.Models.BillDetail", b =>
-                {
-                    b.HasOne("DYDN_Company.Models.Bill", "Bill")
-                        .WithMany("BillDetails")
-                        .HasForeignKey("BillId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

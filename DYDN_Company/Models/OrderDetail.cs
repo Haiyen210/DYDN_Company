@@ -25,4 +25,11 @@ namespace DYDN_Company.Models
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
+
+    public class DisplayOrderDetail:OrderDetail
+    {
+        public string ProductCode{ get; set; }
+        public string ProductName { get; set; }
+    }
+
 }

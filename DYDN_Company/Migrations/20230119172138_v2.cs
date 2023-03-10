@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DYDN_Company.Migrations
 {
-    public partial class v1 : Migration
+    public partial class v2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -109,12 +109,17 @@ namespace DYDN_Company.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 30, nullable: true),
+                    Code = table.Column<string>(maxLength: 250, nullable: true),
+                    Name = table.Column<string>(maxLength: 250, nullable: true),
+                    Address = table.Column<string>(maxLength: 250, nullable: true),
+                    Email = table.Column<string>(nullable: false),
+                    Phone = table.Column<string>(nullable: false),
                     Note = table.Column<string>(nullable: true),
                     AccountUserId = table.Column<int>(nullable: false),
                     TotalQuantity = table.Column<int>(nullable: false),
                     TotalAmount = table.Column<int>(nullable: false),
-                    Status = table.Column<bool>(nullable: false),
+                    Status = table.Column<byte>(nullable: false),
+                    Payment = table.Column<byte>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false)
                 },
@@ -185,30 +190,6 @@ namespace DYDN_Company.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tblBill",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    OrderId = table.Column<int>(nullable: false),
-                    TotalPrice = table.Column<float>(nullable: false),
-                    Tax = table.Column<int>(nullable: false),
-                    Status = table.Column<byte>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblBill", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_tblBill_tblOrder_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "tblOrder",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "tblProduct",
                 columns: table => new
                 {
@@ -240,27 +221,6 @@ namespace DYDN_Company.Migrations
                         name: "FK_tblProduct_tblWareHouse_WareHouseID",
                         column: x => x.WareHouseID,
                         principalTable: "tblWareHouse",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblBillDetail",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BillId = table.Column<int>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblBillDetail", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_tblBillDetail_tblBill_BillId",
-                        column: x => x.BillId,
-                        principalTable: "tblBill",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -326,16 +286,6 @@ namespace DYDN_Company.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_tblBill_OrderId",
-                table: "tblBill",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tblBillDetail_BillId",
-                table: "tblBillDetail",
-                column: "BillId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_tblCategory_Code",
                 table: "tblCategory",
                 column: "Code",
@@ -378,13 +328,6 @@ namespace DYDN_Company.Migrations
                 name: "IX_tblOrder_AccountUserId",
                 table: "tblOrder",
                 column: "AccountUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tblOrder_Name",
-                table: "tblOrder",
-                column: "Name",
-                unique: true,
-                filter: "[Name] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tblOrderDetail_OrderId",
@@ -448,31 +391,25 @@ namespace DYDN_Company.Migrations
                 name: "tblBanner");
 
             migrationBuilder.DropTable(
-                name: "tblBillDetail");
-
-            migrationBuilder.DropTable(
                 name: "tblOrderDetail");
 
             migrationBuilder.DropTable(
                 name: "tblDepartment");
 
             migrationBuilder.DropTable(
-                name: "tblBill");
+                name: "tblOrder");
 
             migrationBuilder.DropTable(
                 name: "tblProduct");
 
             migrationBuilder.DropTable(
-                name: "tblOrder");
+                name: "tblAccountUser");
 
             migrationBuilder.DropTable(
                 name: "tblCategory");
 
             migrationBuilder.DropTable(
                 name: "tblWareHouse");
-
-            migrationBuilder.DropTable(
-                name: "tblAccountUser");
 
             migrationBuilder.DropTable(
                 name: "tblFactory");

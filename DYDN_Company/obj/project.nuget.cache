@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8SmUB9C7EghS4pZFpITdzSn2uwOettHLdKvG6OeUQusSpMv3rpw9SnQVOnoFTl538ZEY81MMzd6kjkD36hYDvQ==",
+  "dgSpecHash": "/wM3ycJbBOja6/8oxaefDo9a4J4iVVlDxXVtZKEWdDzKE9a9luUJ488ZLJqtwhWEtMx0BsjDeEarPyrbcIvCqA==",
   "success": true,
-  "projectFilePath": "C:\\LTV\\Sem3\\Project-Sem-3\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj",
+  "projectFilePath": "C:\\LTV\\Sem3\\Project-Sem-3\\Group2_C2010I1_eProject_Sem3\\DYDN Company System\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\YEN_XINH\\.nuget\\packages\\microsoft.aspnetcore\\2.1.7\\microsoft.aspnetcore.2.1.7.nupkg.sha512",

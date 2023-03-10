@@ -129,7 +129,6 @@ namespace DYDN_Company.Controllers
             datas.Add(_context.Factories.Count());
             datas.Add(_context.WareHouses.Count());
             datas.Add(_context.Orders.Count());
-            datas.Add(_context.Bills.Count());
             return Ok(datas);
         }
     }

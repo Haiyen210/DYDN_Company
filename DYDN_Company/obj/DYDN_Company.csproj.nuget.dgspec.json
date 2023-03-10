@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\LTV\\Sem3\\Project-Sem-3\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj": {}
+    "C:\\LTV\\Sem3\\Project-Sem-3\\Group2_C2010I1_eProject_Sem3\\DYDN Company System\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj": {}
   },
   "projects": {
-    "C:\\LTV\\Sem3\\Project-Sem-3\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj": {
+    "C:\\LTV\\Sem3\\Project-Sem-3\\Group2_C2010I1_eProject_Sem3\\DYDN Company System\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\LTV\\Sem3\\Project-Sem-3\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj",
+        "projectUniqueName": "C:\\LTV\\Sem3\\Project-Sem-3\\Group2_C2010I1_eProject_Sem3\\DYDN Company System\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj",
         "projectName": "DYDN_Company",
-        "projectPath": "C:\\LTV\\Sem3\\Project-Sem-3\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj",
+        "projectPath": "C:\\LTV\\Sem3\\Project-Sem-3\\Group2_C2010I1_eProject_Sem3\\DYDN Company System\\DYDN_Company\\DYDN_Company\\DYDN_Company.csproj",
         "packagesPath": "C:\\Users\\YEN_XINH\\.nuget\\packages\\",
-        "outputPath": "C:\\LTV\\Sem3\\Project-Sem-3\\DYDN_Company\\DYDN_Company\\obj\\",
+        "outputPath": "C:\\LTV\\Sem3\\Project-Sem-3\\Group2_C2010I1_eProject_Sem3\\DYDN Company System\\DYDN_Company\\DYDN_Company\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
